@@ -25,12 +25,17 @@ yang2dsdl ./student-data.yang
 Check syntax and format errors with YANGLINT
 yanglint --path ./student-data.yang --not-strict --type nc-rpc
 
+Still testing this for Yang to JSON 
+pyang - f jsonxsl - o test.xsl --path=$CONFD_DIR/src/confd/yang student-data.yang
+pyang - f jsonxsl - o test.xsl student-data.yang
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Use virtual environment
 source venv/bin/activate 
 
-Install pyang via pip 
+Install pyang & libyang via pip 
 pip install pyang 
+pip install libyang
 
 Clone 'pyang' in the current directory or any other location
 git clone https://github.com/mbj4668/pyang
@@ -50,14 +55,26 @@ source env.sh
 Introduction to YANG
 http://yang.ciscolive.com/pod0/labs/lab2/lab2-m1
 
-Data Modeling Basics
-https://support.huawei.com/enterprise/en/doc/EDOC1100055049/56397540/data-modeling-basics#feature_0003991465
-
 The YANG Data Modeling Language
 http://66.218.245.39/doc/html/ch03.html
 
+Learn YANG - Full Tutorial for Beginners
+https://ultraconfig.com.au/blog/learn-yang-full-tutorial-for-beginners/
+
+Data Modeling Basics
+https://support.huawei.com/enterprise/en/doc/EDOC1100055049/56397540/data-modeling-basics#feature_0003991465
+
+YANG in NSO
+https://developer.cisco.com/docs/nso/guides/#!nso-5-7-development-guide-the-yang-data-modeling-language/the-yang-data-modeling-language
+
 pyang Installation
 https://github.com/mbj4668/pyang
+
+pyangbind
+https://github.com/robshakir/pyangbind
+
+Yangson
+https://yangson.labs.nic.cz/quickstart.html
 
 Pyang installation on MS Windows - mbj4668/pyang GitHub Wiki
 https://github-wiki-see.page/m/mbj4668/pyang/wiki/Pyang-installation-on-MS-Windows
@@ -74,5 +91,11 @@ https://plajjan.github.io/2017-10-30-yang-validation-in-the-real-world.html
 Convert XML to JSON
 https://plajjan.github.io/2020-01-29-convert-xml-to-json-and-yaml.html
 
-Learn YANG - Full Tutorial for Beginners
-https://ultraconfig.com.au/blog/learn-yang-full-tutorial-for-beginners/
+How to convert YANG data model to JSON data?
+https://splunktool.com/how-to-convert-yang-data-model-to-json-data
+
+XML to JSON Converter Online
+https://codebeautify.org/xmltojson
+
+RFC6020
+https://www.rfc-editor.org/rfc/rfc6020

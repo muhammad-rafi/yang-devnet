@@ -7,9 +7,9 @@
         <first-name>Mario</first-name>
         <last-name>Bros</last-name>
         <email>mariobros@devnetbro.com</email>
-        <subjects>english</subjects>
-        <subjects>maths</subjects>
-        <subjects>science</subjects>
+        <subjects>English</subjects>
+        <subjects>Maths</subjects>
+        <subjects>Science</subjects>
         <grade>A</grade>
       </student>
         <student>
@@ -18,11 +18,9 @@
         <first-name>Luigi</first-name>
         <last-name>Mario</last-name>
         <email>luigimario@devnetbro.com</email>
-        <subjects>
-          Biology
-          Chemistry
-          Physics
-        </subjects>
+        <subjects>Biology</subjects>
+        <subjects>Chemistry</subjects>
+        <subjects>Physics</subjects>
         <grade>B</grade>
       </student>
     </student-record>
