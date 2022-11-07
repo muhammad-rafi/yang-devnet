@@ -1,0 +1,165 @@
+module employment-data  {
+  namespace "http://devnetbro.com/employment-data";
+  prefix empdata;
+
+  import "employment-common" {
+    prefix emp-common;
+  }
+
+  organization
+    "DevNet Bro";
+  contact
+    "muhammadrafi@devnetbro.com";
+  description
+    "This yang model for the employment record";
+
+  revision 2022-11-05 {
+      description
+        "Initial revision.";
+  }
+
+  // This grouping has been moved to the sub-module name employment-common.yang
+  // grouping contact-info {
+  //   leaf full-name {
+  //     type string;
+  //     mandatory true;
+  //     description 
+  //       "Employee's Full Name";
+  //   }
+  //   leaf phone-number {
+  //     type uint32;
+  //     mandatory true;
+  //     description 
+  //       "Employee's Phone Number";
+  //   }
+  //   leaf home-address {
+  //     type string;
+  //     mandatory true;
+  //     description 
+  //       "Employee's Home address Number";
+  //   }
+  //   leaf email {
+  //     type string;
+  //     mandatory true;
+  //     description 
+  //       "Employee's Emaill Address";
+  //   }
+  // }
+
+  typedef float {
+    type decimal64 {
+      fraction-digits 4;
+    }
+    description 
+      "Drived type 'float from 'decimal64";
+  }
+
+  // TODO: need to fix this issue 
+  // augment "/emp-common:employee-benefits" {
+  //   leaf employee-test {
+  //     type boolean;
+  //       description 
+  //       "Is Student registered for company bensfits";
+  //     }
+  //   }
+
+  container employee-info {
+    list employee {
+      key "employee-id";
+      unique "full-name";
+      max-elements 1024;
+      min-elements 1;
+
+      leaf employee-id {
+        type uint16 {
+          range 1..65535;
+        }
+        description 
+          "Unique ID of the Employee";
+      }
+
+      // use this one if you define 'contact-info' locally
+      // uses contact-info;
+
+      // use this one if you define 'contact-info' in a sub-module
+      uses emp-common:contact-info;
+
+      leaf gender {
+        type enumeration {
+          enum male;
+          enum female;
+        }
+        description 
+          "Employee Gender";
+      }
+      leaf date-of-birth {
+        type string;
+        mandatory true;
+        description 
+          "Employee's Date of Birth";
+      }
+    }
+
+  container employee-record {
+    presence "student information";
+    config false;
+
+    list employee {
+      key "employee-name";
+
+      leaf employee-name {
+        type leafref {
+          path "../../../employee/full-name";
+          }
+        }
+      }
+      leaf salary {
+        type float;
+        mandatory true;
+        description 
+          "Employee's Salary";
+      }
+      leaf employment-type {
+        type enumeration {
+          enum permanent;
+          enum contractor;
+          enum volunteer;
+        }
+      }
+      leaf is-active {
+        type boolean;
+        default "false";
+        description 
+          "Is Student Enrolled or not";
+      }
+      leaf grade-a {
+          type empty;
+          must "../is-active != 'false' and ../salary > 50000" {
+            error-message "Employee is not currently active and has earns less than 50000";
+        }
+      }
+      leaf grade-b {
+          type empty;
+          when "../is-active != 'false' and ../salary < 50000";
+      }
+      leaf job-title {
+        type string;
+        mandatory true;
+        description 
+          "Employee designation in the organization";
+      }
+      leaf department {
+        type string;
+        mandatory true;
+        description 
+          "Employee department where he/she works in the organization";
+      }
+      leaf-list credentials {
+        ordered-by user;
+        type string;
+        description
+            "Lists of Employee's credentials";
+        }
+      }
+    } 
+  }

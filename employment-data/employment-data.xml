@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <employee-info xmlns="http://devnetbro.com/employment-data">
+    <employee>
+      <employee-id/>
+      <full-name/>
+      <phone-number/>
+      <home-address/>
+      <email/>
+      <gender/>
+      <date-of-birth/>
+    </employee>
+    <employee-record>
+      <employee>
+        <employee-name/>
+        <salary/>
+        <employment-type/>
+        <grade-a/>
+        <grade-b/>
+        <job-title/>
+        <department/>
+        <credentials>
+          <!-- # entries: 0.. -->
+        </credentials>
+      </employee>
+    </employee-record>
+  </employee-info>
+</data>

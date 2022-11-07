@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dsrl:maps xmlns:dsrl="http://purl.oclc.org/dsdl/dsrl" xmlns:empdata="http://devnetbro.com/employment-data" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"><dsrl:element-map><dsrl:parent>/nc:data/empdata:employee-info/empdata:employee-record/empdata:employee</dsrl:parent><dsrl:name>empdata:is-active</dsrl:name><dsrl:default-content>false</dsrl:default-content></dsrl:element-map></dsrl:maps>

@@ -1,0 +1,78 @@
+To validate YANG model with PYANG 
+pyang ./student-data.yang
+
+To view the YANG model in tree format 
+pyang -f tree student-data.yang
+pyang -f tree student-data.yang --tree-depth=4
+pyang student-data.yang -f tree --tree-path=/yang-devnet/student-data --tree-depth=4
+
+To convert YANG to XML 
+pyang -f sample-xml-skeleton -o student-data.xml student-data.yang
+
+To view the yang model in XML data format 
+pyang -f sample-xml-skeleton student-data.yang 
+
+To view the yang model in XML config format 
+pyang -f sample-xml-skeleton --sample-xml-skeleton-doctype=config student-data.yang 
+
+To convert YANG to YIN  
+pyang -f yin tree student-data.yang -o student-data.yin
+
+To validate YANG model with YANG2DSDL 
+yang2dsdl -v student-data.xml student-data.yang
+yang2dsdl ./student-data.yang
+
+Check syntax and format errors with YANGLINT
+yanglint --path ./student-data.yang --not-strict --type nc-rpc
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Use virtual environment
+source venv/bin/activate 
+
+Install pyang via pip 
+pip install pyang 
+
+Clone 'pyang' in the current directory or any other location
+git clone https://github.com/mbj4668/pyang
+
+set the following environment variables, if you have cloned 'pyang' on the current directory
+export PYANG_XSLT_DIR="$PWD/pyang/xslt"
+export PYANG_RNG_LIBDIR="$PWD/pyang/schema"
+
+set the following environment variables, if you have cloned 'pyang' on your home directory
+export PYANG_XSLT_DIR="$HOME/pyang/xslt"
+export PYANG_RNG_LIBDIR="$HOME/pyang/schema"
+
+or put this environment vairables in bash script and source it from the script 
+source env.sh
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Introduction to YANG
+http://yang.ciscolive.com/pod0/labs/lab2/lab2-m1
+
+Data Modeling Basics
+https://support.huawei.com/enterprise/en/doc/EDOC1100055049/56397540/data-modeling-basics#feature_0003991465
+
+The YANG Data Modeling Language
+http://66.218.245.39/doc/html/ch03.html
+
+pyang Installation
+https://github.com/mbj4668/pyang
+
+Pyang installation on MS Windows - mbj4668/pyang GitHub Wiki
+https://github-wiki-see.page/m/mbj4668/pyang/wiki/Pyang-installation-on-MS-Windows
+
+Pyang Examples 
+https://aristanetworks.github.io/openmgmt/examples/pyang/
+
+yang2dsdl does not search virtualenv path for xslt #499
+https://github.com/mbj4668/pyang/issues/499
+
+YANG validation in the real world
+https://plajjan.github.io/2017-10-30-yang-validation-in-the-real-world.html
+
+Convert XML to JSON
+https://plajjan.github.io/2020-01-29-convert-xml-to-json-and-yaml.html
+
+Learn YANG - Full Tutorial for Beginners
+https://ultraconfig.com.au/blog/learn-yang-full-tutorial-for-beginners/

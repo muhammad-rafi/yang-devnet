@@ -1,0 +1,43 @@
+module employment-common  {
+  namespace "http://devnetbro.com/employment-common";
+  prefix empcm;
+
+  organization
+    "DevNet Bro";
+  contact
+    "muhammadrafi@devnetbro.com";
+  description
+    "This yang model for the employment common data";
+
+  revision 2022-11-05 {
+      description
+        "Initial revision.";
+  }
+
+  grouping contact-info {
+    leaf full-name {
+      type string;
+      mandatory true;
+      description 
+        "Employee's Full Name";
+    }
+    leaf phone-number {
+      type uint32;
+      mandatory true;
+      description 
+        "Employee's Phone Number";
+    }
+    leaf home-address {
+      type string;
+      mandatory true;
+      description 
+        "Employee's Home address Number";
+    }
+    leaf email {
+      type string;
+      mandatory true;
+      description 
+        "Employee's Emaill Address";
+    }
+  }
+}

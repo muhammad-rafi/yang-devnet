@@ -1,0 +1,200 @@
+module student-data {
+  namespace "http://com/example/student-data";
+  prefix student-data;
+
+  organization
+    "DevNet Bro";
+  contact
+    "muhammadrafi@devnetbro.com";
+  description
+    "This yang model for the student information";
+
+  revision 2022-10-20 {
+      description
+        "Initial revision.";
+  }
+
+  grouping basic-info {
+    leaf first-name {
+      type string;
+      mandatory true;
+      description 
+        "Student's First Name";
+    }
+    leaf last-name {
+      type string;
+      mandatory true;
+      description 
+        "Student's Last Name";
+    }
+    leaf email {
+      type string;
+      mandatory true;
+      description 
+        "Student's Emaill Address";
+    }
+  }
+
+  typedef float {
+    type decimal64 {
+      fraction-digits 2;
+    }
+    description 
+      "Drived type 'float from 'decimal64";
+  }
+
+  typedef GPA {
+    description 
+      "Drived type 'float from 'decimal64";
+    type union {
+      type float {
+        range "0.25 | 3.0 | 3.5 | 4.0";
+      }
+      type enumeration {
+        enum A;
+        enum B;
+        enum C;
+        enum F;
+      }
+    }
+  }
+
+  container student-records {
+    container student-record {
+      list student {
+        key "student-id";
+        unique full-name;
+
+        leaf student-id {
+          type uint16 {
+            range 1..65535;
+          }
+          description 
+            "Unique ID of the Student";
+        }
+        leaf full-name {
+          type string;
+          mandatory true;
+          description 
+            "Student's Full Name";
+        }
+        uses basic-info;
+        
+        leaf enrolled {
+          type boolean;
+          default "true";
+          mandatory false;
+          description 
+            "Is Student Enrolled or not";
+        }
+        leaf-list subjects {
+          ordered-by user;
+          type string;
+          description
+              "Lists of subjects Student has";
+        }
+        leaf grade {
+          type enumeration {
+            enum A;
+            enum B;
+            enum C;
+            enum F;
+          }
+          mandatory true;
+          description 
+            "Student Grade";
+        }
+      }
+    }
+    container student-info {
+      presence "student information";
+      config false;
+      leaf student-name {
+        type leafref {
+          path "../../student-record/student/full-name";
+        }
+      }
+      choice result {
+        mandatory true;
+        case passed {
+          leaf passed-result {
+            type string;
+            when "../../student-record/student/grade = 'A'"
+            + "or (../../student-record/student/grade = 'B'" 
+            + "or ../../student-record/student/grade = 'C')";
+            }
+          }
+        case failed {
+          leaf failed-result {
+            type string;
+            when "../../student-record/student/grade = 'F'";
+            }
+          }
+        description 
+          "Student's Result";
+        }
+      leaf passed-score-a {
+        mandatory false;
+        default 4.0;
+        type float;
+        must "../../student-record/student/grade = 'A'" {
+          error-message "Student must have grade A";
+         }
+        }
+      leaf passed-score-b {
+        mandatory false;
+        default 3.5;
+        type float;
+        must "../../student-record/student/grade = 'B'" {
+          error-message "Student must have grade B";
+         }
+        }
+      leaf passed-score-c {
+        mandatory false;
+        default 3.0;
+        type float;
+        must "../../student-record/student/grade = 'C'" {
+          error-message "Student must have grade C";
+         }
+        }
+      leaf failed-score {
+        mandatory false;
+        default 0.25;
+        type float;
+        must "../../student-record/student/grade = 'F'" {
+          error-message "Student must have grade F";
+          }
+        }
+      leaf excellent {
+        type int16; 
+        default 4;
+        must "current() = ../passed-score-a" {
+          error-message "Student must have 4.0 GPA";
+          }
+        }
+      leaf good {
+        type float;
+        default 3.5;
+        must "current() < 4 and current() > 3.49" {
+          error-message "Student must have 3.5 or more GPA";
+          }
+        }
+      leaf need-improvement {
+        type int32; 
+        default 3;
+        must "(current() < 3.25 and current() > 2.99)" {
+          error-message "Student must have 3.0 GPA";
+          }
+        }
+      leaf poor {
+        type uint16; 
+        default 0;
+        must "current() < 0.25" {
+          error-message "Student must have less than 0.25 GPA";
+          }
+        }
+      } 
+    }
+  }
+
+// TODO: augment, deref, import and include

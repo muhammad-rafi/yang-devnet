@@ -1,0 +1,30 @@
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <student-records xmlns="http://com/example/student-data">
+    <student-record>
+      <student>
+        <student-id>1011</student-id>
+        <full-name>Mario Bros</full-name>
+        <first-name>Mario</first-name>
+        <last-name>Bros</last-name>
+        <email>mariobros@devnetbro.com</email>
+        <subjects>english</subjects>
+        <subjects>maths</subjects>
+        <subjects>science</subjects>
+        <grade>A</grade>
+      </student>
+        <student>
+        <student-id>1012</student-id>
+        <full-name>Luigi Mario</full-name>
+        <first-name>Luigi</first-name>
+        <last-name>Mario</last-name>
+        <email>luigimario@devnetbro.com</email>
+        <subjects>
+          Biology
+          Chemistry
+          Physics
+        </subjects>
+        <grade>B</grade>
+      </student>
+    </student-record>
+  </student-records>
+</data>
