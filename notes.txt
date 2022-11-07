@@ -97,5 +97,8 @@ https://splunktool.com/how-to-convert-yang-data-model-to-json-data
 XML to JSON Converter Online
 https://codebeautify.org/xmltojson
 
+How to convert XML to JSON in Python – Step by Step guide
+https://www.hellocodeclub.com/how-to-convert-xml-to-json-in-python-ultimate-guide/
+
 RFC6020
 https://www.rfc-editor.org/rfc/rfc6020

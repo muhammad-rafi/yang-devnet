@@ -1,0 +1,38 @@
+{
+  "data": {
+    "@xmlns": "urn:ietf:params:xml:ns:netconf:base:1.0",
+    "student-records": {
+      "@xmlns": "http://com/example/student-data",
+      "student-record": {
+        "student": [
+          {
+            "student-id": "1011",
+            "full-name": "Mario Bros",
+            "first-name": "Mario",
+            "last-name": "Bros",
+            "email": "mariobros@devnetbro.com",
+            "subjects": [
+              "English",
+              "Maths",
+              "Science"
+            ],
+            "grade": "A"
+          },
+          {
+            "student-id": "1012",
+            "full-name": "Luigi Mario",
+            "first-name": "Luigi",
+            "last-name": "Mario",
+            "email": "luigimario@devnetbro.com",
+            "subjects": [
+              "Biology",
+              "Chemistry",
+              "Physics"
+            ],
+            "grade": "B"
+          }
+        ]
+      }
+    }
+  }
+}
