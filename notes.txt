@@ -8,6 +8,7 @@ pyang student-data.yang -f tree --tree-path=/yang-devnet/student-data --tree-dep
 
 To convert YANG to XML 
 pyang -f sample-xml-skeleton -o student-data.xml student-data.yang
+pyang -f sample-xml-skeleton --sample-xml-skeleton-defaults -o student-data.xml student-data.yang
 
 To view the yang model in XML data format 
 pyang -f sample-xml-skeleton student-data.yang 
@@ -26,8 +27,8 @@ Check syntax and format errors with YANGLINT
 yanglint --path ./student-data.yang --not-strict --type nc-rpc
 
 Still testing this for Yang to JSON 
-pyang - f jsonxsl - o test.xsl --path=$CONFD_DIR/src/confd/yang student-data.yang
-pyang - f jsonxsl - o test.xsl student-data.yang
+pyang -f jsonxsl -o test.xsl --path=$CONFD_DIR/src/confd/yang student-data.yang
+pyang -f jsonxsl -o test.xsl student-data.yang
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Use virtual environment
@@ -48,8 +49,17 @@ set the following environment variables, if you have cloned 'pyang' on your home
 export PYANG_XSLT_DIR="$HOME/pyang/xslt"
 export PYANG_RNG_LIBDIR="$HOME/pyang/schema"
 
-or put this environment vairables in bash script and source it from the script 
+or put this environment variables in bash script and source it from the script 
 source env.sh
+
+export PATH=`pwd`/bin:$PATH
+export MANPATH=`pwd`/man:$MANPATH
+export PYTHONPATH=`pwd`:$PYTHONPATH
+export YANG_MODPATH=`pwd`/modules:$YANG_MODPATH
+export PYANG_XSLT_DIR=`pwd`/xslt
+export PYANG_RNG_LIBDIR=`pwd`/schema
+
+source ./env.sh
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Introduction to YANG
@@ -102,3 +112,6 @@ https://www.hellocodeclub.com/how-to-convert-xml-to-json-in-python-ultimate-guid
 
 RFC6020
 https://www.rfc-editor.org/rfc/rfc6020
+
+Check out the Yang Models from Cisco NSO under the following directory in NSO
+ls -l nso-6.3/examples.ncs/getting-started/developing-with-ncs/
